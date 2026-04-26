@@ -1,0 +1,14 @@
+{
+  "name": "@li0ard/sm4",
+  "module": "src/index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@li0ard/gost3413": "^0.1.8"
+  }
+}
