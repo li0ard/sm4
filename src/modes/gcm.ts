@@ -36,7 +36,7 @@ export const encryptGCM = (
 /**
  * Decrypt data using Galois/Counter (GCM) Mode
  * @param key Encryption key
- * @param data Data to be decrypted
+ * @param ciphertext Data to be decrypted
  * @param nonce Nonce (12 or 16 bytes)
  * @param aad Data to be authenticated
  */

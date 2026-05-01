@@ -4,7 +4,7 @@ import type { TArg, TRet } from "@noble/ciphers/utils.js";
 
 /**
  * Proceed data using Counter (CTR) mode
- * @param cipherClass Initialized cipher class
+ * @param key Encryption key
  * @param data Data to be encrypted/decrypted
  * @param iv Initialization vector
  */
