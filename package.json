@@ -1,14 +1,38 @@
 {
   "name": "@li0ard/sm4",
-  "module": "src/index.ts",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "type": "module",
+  "author": "li0ard",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/li0ard/sm4.git"
+  },
+  "bugs": {
+    "url": "https://github.com/li0ard/sm4/issues"
+  },
+  "homepage": "https://github.com/li0ard/sm4#readme",
+  "description": "SM4 cipher implementation in pure TypeScript",
+  "license": "MIT",
+  "scripts": {
+    "build": "rm -rf dist/ && tsc --project tsconfig.build.json",
+    "docs": "typedoc --options .config/typedoc/config.cjs"
+  },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "typedoc": "^0.28.19"
   },
   "peerDependencies": {
     "typescript": "^5"
   },
   "dependencies": {
-    "@li0ard/gost3413": "^0.1.8"
-  }
+    "@li0ard/sp80038": "^0.1.0",
+    "@noble/ciphers": "^2.2.0"
+  },
+  "files": ["dist"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": ["sm4", "crypto", "shangmi"]
 }

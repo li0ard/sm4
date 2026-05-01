@@ -1,8 +1,9 @@
 import { SM4, BLOCKSIZE } from "../index.js";
-import { ofb as ofb_, type TArg, type TRet } from "@li0ard/gost3413";
+import { ofb as ofb_ } from "@li0ard/sp80038";
+import type { TArg, TRet } from "@noble/ciphers/utils.js";
 
 /**
- * Proceed data using the Output Feedback (OFB) mode
+ * Proceed data using Output Feedback (OFB) mode
  * @param key Encryption key
  * @param data Data to be encrypted/decrypted
  * @param iv Initialization vector

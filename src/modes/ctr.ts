@@ -1,11 +1,18 @@
 import { SM4, BLOCKSIZE } from "../index.js";
-import { type TArg, type TRet, xor } from "@li0ard/gost3413";
+import { ctr as ctr_ } from "@li0ard/sp80038";
+import type { TArg, TRet } from "@noble/ciphers/utils.js";
 
-const incrementCounterAt = (ctr: TArg<Uint8Array>, pos: number) => {
-    let j = pos;
-    while (j < ctr.length) if (++ctr[j++] != 0) break;
-}
-
-export const ctr = () => {
-    
+/**
+ * Proceed data using Counter (CTR) mode
+ * @param cipherClass Initialized cipher class
+ * @param data Data to be encrypted/decrypted
+ * @param iv Initialization vector
+ */
+export const ctr = (
+    key: TArg<Uint8Array>,
+    data: TArg<Uint8Array>,
+    iv: TArg<Uint8Array>
+): TRet<Uint8Array> => {
+    const cipher = new SM4(key);
+    return ctr_(cipher.encrypt.bind(cipher), BLOCKSIZE, data, iv);
 }

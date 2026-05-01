@@ -1,12 +1,17 @@
-import type { TArg, TRet } from "@li0ard/gost3413";
+import type { Cipher, TArg, TRet } from "@noble/ciphers/utils.js";
 import { BLOCKSIZE, CK, FK, SBOX0, SBOX1, SBOX2, SBOX3 } from "./const.js";
 import { feistel0, permuteFinalBlock, permuteInitialBlock } from "./utils.js";
 
-export class SM4 {
-    subkeys: Uint32Array;
+/** ShangMi 4 (SM4 cipher) */
+export class SM4 implements Cipher {
+    private subkeys: Uint32Array;
     private b: Uint32Array;
     private r: Uint8Array;
 
+    /**
+     * ShangMi 4 (SM4 cipher)
+     * @param key Encryption key
+     */
     constructor(key: TArg<Uint8Array>) {
         this.subkeys = new Uint32Array(32);
 
@@ -62,18 +67,23 @@ export class SM4 {
         permuteFinalBlock(this.r, this.b);
     }
 
+    /** Encrypt single block */
     encrypt(data: TArg<Uint8Array>): TRet<Uint8Array> {
         this.cryptBlock(data, false);
-        return this.r as TRet<Uint8Array>;
+        return this.r.slice() as TRet<Uint8Array>;
     }
 
+    /** Decrypt single block */
     decrypt(data: TArg<Uint8Array>): TRet<Uint8Array> {
         this.cryptBlock(data, true);
-        return this.r as TRet<Uint8Array>;
+        return this.r.slice() as TRet<Uint8Array>;
     }
 }
 
 export { BLOCKSIZE } from "./const.js";
 export * from "./modes/cbc.js";
+export * from "./modes/cfb.js";
+export * from "./modes/ctr.js";
 export * from "./modes/ecb.js";
+export * from "./modes/gcm.js";
 export * from "./modes/ofb.js";
